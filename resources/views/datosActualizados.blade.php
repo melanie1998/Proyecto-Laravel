@@ -61,23 +61,26 @@
                         </div>
                     @endif
 
-                    <center>
+            <center>
                     <table border="1px" style="text-align:center;">
-                           
-                                            @foreach ($datos as $key=>$value)
-                                                    @if($key!='_token')
-                                                <tr>
-                                                        <th style="background-color:orangered; padding:10px 10px 10px 10px;">{{ $key }}</th>
-                                                        <td style="background-color:white; padding:10px 10px 10px 10px; width:70%;"> {{ $value }}</td>
-                                                    </tr>
-                                                    @endif
-                                            @endforeach
+                            <tr>
+                                <th style="background-color:orangered; padding:10px 10px 10px 10px;">Nombre</th>
+                                <td style="background-color:white; padding:10px 10px 10px 10px;">{{Auth::guard('profesor')->user()->name}}</td>
+                            </tr>
+                            @foreach ($datos as $key=>$value)
+                                @if($key!='_token')
+                                     <tr>
+                                        <th style="background-color:orangered; padding:10px 10px 10px 10px;">{{ $key }}</th>
+                                        <td style="background-color:white; padding:10px 10px 10px 10px; width:70%;"> {{ $value }}</td>
+                                    </tr>
+                                 @endif
+                            @endforeach
                         
-                            </table>
+                    </table>
                       
-                            <br>
-                            <a href="{{url('/listaIncidencia')}}" title="aceptar"><img src="{!! asset('aceptar.png') !!}" width="55px"></a>
-                        </center>
+<br>
+            <a href="{{url('/listaIncidencia')}}" style="height: 0px;" title="aceptar"><img src="{!! asset('aceptar.png') !!}" width="55px"></a>
+            </center>
                
         </div>
     </div>

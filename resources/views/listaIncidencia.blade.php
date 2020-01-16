@@ -64,7 +64,7 @@
                     <a href="{{url('/crearIncidencia')}}" title="añadir incidencia"><img src="{!! asset('añadir.png') !!}" width="55px"></td></a>
                 
                
-                    <table style="background-color: white; text-align: left; border-collapse: collapse; width: 100%; margin-left: -35%; margin-top: 5%; border: none;">
+                    <table style="background-color: white; text-align: left; border-collapse: collapse; width: 60%; margin-left: -35%; margin-top: 5%; border: none;">
    
                     <style>
 
@@ -124,7 +124,7 @@
                                     @endforeach
                                     <td style="padding: 20px;"><a href="/modificarIncidencia/{{$datos[$i]->getAttribute('id')}}" title="modificar"><img src="{!! asset('modificar.png') !!}" width="50px"></td></a>
                                     <td style="padding: 20px;"><a href="/eliminarIncidencia/{{$datos[$i]->getAttribute('id')}}" title="eliminar"><img src="{!! asset('eliminar.ico') !!}" width="55px"></td></a>
-                                    <td style="padding: 20px;"><a href="/consultaIncidencia/{{$datos[0]->getAttribute('id')}}" title="Ver detalles"><img src="{!! asset('detalles.png') !!}" width="55px"></td></a>
+                                    <td style="padding: 20px;"><a href="/consultaIncidencia/{{$datos[$i]->getAttribute('id')}}" title="Ver detalles"><img src="{!! asset('detalles.png') !!}" width="55px"></td></a>
 
                                 </tr>
                                
@@ -140,7 +140,7 @@
                
         </div>
 
-        <a href="{{url('/home')}}"><button class="button" style="background-color: white;">Volver</button></a>
+        <a href="{{url('/home')}}" style="height: 0px;"><button class="button" style="background-color: white;">Volver</button></a>
 
     </div>
 </div>

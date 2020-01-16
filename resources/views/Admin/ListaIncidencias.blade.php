@@ -26,7 +26,7 @@
 	background: transparent;
 	color: #e55743;
 	text-transform: uppercase;
-	letter-spacing: .25em;
+
 	outline: none;
 	cursor: pointer;
 	font-weight: bold;
@@ -104,10 +104,10 @@
                             @else
                                 <tr>
                                     @foreach($datos[$i]->getAttributes() as $value)
-                                        <td style="border: medium solid black; padding:15px 15px 15px 15px;">{{ $value }} </td>
+                                        <td style="padding: 20px;">{{ $value }} </td>
                                     @endforeach
-                                    <td style="border: medium solid black; padding:15px 15px 15px 15px;"><a href="/modificarIncAdmin/{{$datos[$i]->getAttribute('id')}}" title="modificar"><img src="{!! asset('modificar.png') !!}" width="50px"></td></a>
-                                    <td style="border: medium solid black; padding:15px 15px 15px 15px;"><a href="/consultaIncAdmin/{{$datos[0]->getAttribute('id')}}" title="ver detalles"><img src="{!! asset('detalles.png') !!}" width="50px"></a></td>
+                                    <td style="padding: 20px;"><a href="/modificarIncAdmin/{{$datos[$i]->getAttribute('id')}}" title="modificar"><img src="{!! asset('modificar.png') !!}" width="50px"></td></a>
+                                    <td style="padding: 20px;"><a href="/consultaIncAdmin/{{$datos[0]->getAttribute('id')}}" title="ver detalles"><img src="{!! asset('detalles.png') !!}" width="50px"></a></td>
 
                                 </tr>
                                
@@ -120,7 +120,7 @@
                   
               
         </div>
-        <a href="{{url('/home/admin')}}"><button class="button" style="background-color: white;">Volver</button></a>
+        <a href="{{url('/home/admin')}}" style="height: 0px;"><button class="button" style="background-color: white;">Volver</button></a>
     </div>
 </div>
 @endsection

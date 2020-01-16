@@ -62,7 +62,7 @@
 
                 <center>
 
-                    <a href="{{url('/verLista')}}"><button class="button">Ver lista de incidencias</button></a>
+                    <a href="{{url('/verLista')}}" style="height: 0px;"><button class="button">Ver lista de incidencias</button></a>
                     <br>
                     
                 </div>

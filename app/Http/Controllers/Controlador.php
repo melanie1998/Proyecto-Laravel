@@ -27,10 +27,9 @@ class Controlador extends Controller
     public function crearIncidencia(Request $request){
 
         $validator = Validator::make($request->all(),[
-        'nombreProfesor' => 'required|min:3|max:255',
-        'fechaIncidencia' => 'required',
+        'fechaIncidencia' => 'required|date_format:Y-m-d',
         'aula' => 'required|digits_between:3,3|numeric',
-        'codigoIncidencia' => 'required',
+        'codigoIncidencia' => 'required|integer|between:1,10',
         'especificacion' => 'min:0|max:255',
         'equipo' =>'required|regex:/^HZ[1-9]{6}$/',
       
@@ -40,18 +39,16 @@ class Controlador extends Controller
         ],[
 
         'required' => 'El/La :attribute es obligatorio.',
-        'nombreProfesor.min' => 'El :attribute tiene que ser de minimo 3 letras',
-        'nombreProfesor.max' => 'El :attribute tiene que ser de maximo 255 letras',
-        'fecha.date_format' => 'La :attribute tiene que ser d/m/Y.',
+        'integer' => 'El :attribute tiene que ser de tipo integer',
+        'fecha.date_format' => 'La :attribute tiene que ser Y-m-d.',
         'aula.digits_between' => 'El :attribute tiene que ser de máximo y de mínimo 3 numeros',
+        'codigoIncidencia.between' => 'El :attribute tiene que ser un numero del 1 al 10',
         'especificacion.min' => 'El :attribute tiene que ser de minimo 0 letras',
         'especificacion.max' => 'El :attribute tiene que ser de maximo 255 letras',
         'equipo.regex' => 'El :attribute tiene que ser HZxxxxxx',
         'numeric' => 'El:attribute tiene que ser numerico',
         'alpha' => 'El :attribute tiene que ser de tipo alpha',
-         
-
-
+       
 
         
         ]);
@@ -66,8 +63,35 @@ class Controlador extends Controller
         }else{
          
 
-            $datos = new Incidencia($request->all());
-            $datos->profesorId = Auth::guard('profesor')->user()->id;
+            
+                $datos = new Incidencia();
+                $datos->nombreProfesor = Auth::guard('profesor')->user()->name;
+                $datos->fechaIncidencia = $request->input('fechaIncidencia');
+                $datos->aula = $request->input('aula'); 
+                if($request->input('codigoIncidencia') == '1'){
+                    $datos->codigoIncidencia = "1.No se enciende la CPU";
+                }else if($request->input('codigoIncidencia') == '2'){
+                    $datos->codigoIncidencia = "2.No se enciende la pantalla";
+                }else if($request->input('codigoIncidencia') == '3'){
+                    $datos->codigoIncidencia = "3.No entra en mi sesión";
+                }else if($request->input('codigoIncidencia') == '4'){
+                    $datos->codigoIncidencia = "4.No navega en Internet";
+                }else if($request->input('codigoIncidencia') == '5'){
+                    $datos->codigoIncidencia = "5.No se oye el sonido";
+                }else if($request->input('codigoIncidencia') == '6'){
+                    $datos->codigoIncidencia = "6.No lee el DVD/CD";
+                }else if($request->input('codigoIncidencia') == '7'){
+                    $datos->codigoIncidencia = "7.Teclado roto";
+                }else if($request->input('codigoIncidencia') == '8'){
+                    $datos->codigoIncidencia = "8.No funciona el ratón";
+                }else if($request->input('codigoIncidencia') == '9'){
+                    $datos->codigoIncidencia = "9.Muy lento para entrar en la sesión";
+                }else if($request->input('codigoIncidencia') == '10'){
+                    $datos->codigoIncidencia = "10.(Otros) Especifica";
+                }
+                $datos->especificacion = $request->input('especificacion');
+                $datos->equipo = $request->input('equipo');
+                $datos->profesorId = Auth::guard('profesor')->user()->id;
             $datos->save();
 
             //en la variable $id guardo el último id que se ha guardado en la base de datos para poder pasarlo a la vista
@@ -103,26 +127,27 @@ class Controlador extends Controller
     public function update(Request $request, $id){
 
         $validator = Validator::make($request->all(),[
-        'nombreProfesor' => 'required|min:3|max:255',
-        'fechaIncidencia' => 'required',
-        'aula' => 'required|digits_between:3,3|numeric',
-        'codigoIncidencia' => 'required',
-        'especificacion' => 'min:0|max:255',
-        'equipo' =>'required|regex:/^HZ[1-9]{6}$/',
-
-        ],[
-
-        'required' => 'El :attribute es obligatorio.',
-        'nombreProfesor.min' => 'El :attribute tiene que ser de minimo 3 letras',
-        'nombreProfesor.max' => 'El :attribute tiene que ser de maximo 255 letras',
-        'fecha.date_format' => 'La :attribute tiene que ser d/m/Y.',
-        'aula.digits_between' => 'El :attribute tiene que ser de máximo y de mínimo 3 numeros',
-        'especificacion.min' => 'El :attribute tiene que ser de minimo 0 letras',
-        'especificacion.max' => 'El :attribute tiene que ser de maximo 255 letras',
-        'equipo.regex' => 'El :attribute tiene que ser HZxxxxxx',
-        'numeric' => 'El:attribute tiene que ser numerico',
-        'alpha' => 'El :attribute tiene que ser de tipo alpha',
-
+            'fechaIncidencia' => 'required|date_format:Y-m-d',
+            'aula' => 'required|digits_between:3,3|numeric',
+            'codigoIncidencia' => 'required|integer|between:1,10',
+            'especificacion' => 'min:0|max:255',
+            'equipo' =>'required|regex:/^HZ[1-9]{6}$/',
+          
+    
+        
+    
+            ],[
+    
+            'required' => 'El/La :attribute es obligatorio.',
+            'integer' => 'El :attribute tiene que ser de tipo integer',
+            'fecha.date_format' => 'La :attribute tiene que ser Y-m-d.',
+            'aula.digits_between' => 'El :attribute tiene que ser de máximo y de mínimo 3 numeros',
+            'codigoIncidencia.between' => 'El :attribute tiene que ser un numero del 1 al 10',
+            'especificacion.min' => 'El :attribute tiene que ser de minimo 0 letras',
+            'especificacion.max' => 'El :attribute tiene que ser de maximo 255 letras',
+            'equipo.regex' => 'El :attribute tiene que ser HZxxxxxx',
+            'numeric' => 'El:attribute tiene que ser numerico',
+            'alpha' => 'El :attribute tiene que ser de tipo alpha',
             
             ]);
 
@@ -136,11 +161,34 @@ class Controlador extends Controller
             }else{
 
                 //en la variable $datos se van a guardar los datos donde la id sea la misma que el parámetra $id
+                
                 $datos = Incidencia::findOrFail($id);
-                $datos->nombreProfesor = $request->input('nombreProfesor');
+                $datos->nombreProfesor = Auth::guard('profesor')->user()->name;
                 $datos->fechaIncidencia = $request->input('fechaIncidencia');
-                $datos->aula = $request->input('aula');
-                $datos->codigoIncidencia = $request->input('codigoIncidencia');
+                $datos->aula = $request->input('aula'); 
+                if($request->input('codigoIncidencia') == '1'){
+                    $datos->codigoIncidencia = "No se enciende la CPU";
+                }else if($request->input('codigoIncidencia') == '2'){
+                    $datos->codigoIncidencia = "No se enciende la pantalla";
+                }else if($request->input('codigoIncidencia') == '3'){
+                    $datos->codigoIncidencia = "No entra en mi sesión";
+                }else if($request->input('codigoIncidencia') == '4'){
+                    $datos->codigoIncidencia = "No navega en Interne";
+                }else if($request->input('codigoIncidencia') == '5'){
+                    $datos->codigoIncidencia = "No se oye el sonido";
+                }else if($request->input('codigoIncidencia') == '6'){
+                    $datos->codigoIncidencia = "No lee el DVD/CD";
+                }else if($request->input('codigoIncidencia') == '7'){
+                    $datos->codigoIncidencia = "Teclado roto";
+                }else if($request->input('codigoIncidencia') == '8'){
+                    $datos->codigoIncidencia = "No funciona el ratón";
+                }else if($request->input('codigoIncidencia') == '9'){
+                    $datos->codigoIncidencia = "Muy lento para entrar en la sesión";
+                }else if($request->input('codigoIncidencia') == '10'){
+                    $datos->codigoIncidencia = "(Otros) Especifica";
+                }else{
+                    $datos->codigoIncidencia = $request->input('codigoIncidencia');
+                }
                 $datos->especificacion = $request->input('especificacion');
                 $datos->estado = $request->input('estado');
                 $datos->equipo = $request->input('equipo');

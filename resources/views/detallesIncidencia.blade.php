@@ -66,18 +66,26 @@
                         <table border="2px" style="text-align:center;">
                        
                             <table border="1px" >
-                           
-                                    @foreach ($datos as $key=>$value)
-                                            @if($key!='_token')
+                                <tr>
+                                    <th style="background-color:orangered; padding:10px 10px 10px 10px;">Nombre</th>
+                                    <td style="background-color:white; padding:10px 10px 10px 10px;">{{Auth::guard('profesor')->user()->name}}</td>
+                                </tr>
+                                
+                                @foreach ($datos as $key=>$value)
+                                    @if($key!='_token')
                                         <tr>
-                                                <th style="background-color:orangered; padding:10px 10px 10px 10px;">{{ $key }}</th>
-                                               
-                                                <td style="background-color:white; padding:10px 10px 10px 10px;">{{ $value }}</td>
+                                                
+                                            <th style="background-color:orangered; padding:10px 10px 10px 10px;">{{ $key }}</th>
                                        
-                                            </tr>
+                                            <td style="background-color:white; padding:10px 10px 10px 10px;">{{ $value }}</td>
+                                         
+                                        </tr>
 
                                             @endif
                                     @endforeach
+
+                                   
+                                    
 
                                     
 
@@ -95,7 +103,7 @@
              
               
         </div>
-        <a href="{{url('/home')}}"><button class="button">Volver</button></a>
+        <a href="{{url('/home')}}" style="height: 0px;"><button class="button">Volver</button></a>
     </div>
 </div>
 @endsection

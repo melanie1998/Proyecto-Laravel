@@ -120,7 +120,7 @@
               
                 
         </div>
-        <a href="{{url('/listaIncidencia')}}"><button class="button">Volver</button></a>
+        <a href="{{url('/listaIncidencia')}}" style="height: 0px;"><button class="button">Volver</button></a>
     </div>
 </div>
 @endsection

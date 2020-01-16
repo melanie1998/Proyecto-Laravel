@@ -65,24 +65,23 @@
                         
                         <div class="errores"> 
 
-                            <p style="background-color: aliceblue; font-size: 1.5em;">Nombre: <input style="float:right;" type="text" name="nombreProfesor" size="37" value="{{ Auth::guard('profesor')->user()->name}}" readonly></p>
                             <br>
-                            <p style="background-color: aliceblue; font-size: 1.5em;">Fecha(DD/MM/YY): <input style="float:right; width:50%;" type="date" name="fechaIncidencia" value="{{ old('fecha') }}" placeholder="fecha"></p>
+                            <p style="background-color: aliceblue; font-size: 1.5em;">Fecha(DD/MM/YY): <input style="float:right; width:50%;" type="date" name="fechaIncidencia" value="{{ old('fechaIncidencia') }}" placeholder="fecha"></p>
                             <br>
                             <p style="background-color: aliceblue; font-size: 1.5em;">Aula: <input style="float:right;" type="text" name="aula" size="37" value="{{ old('aula') }}" placeholder="aula"></p>
                             <br>
                             <p style="background-color: aliceblue; font-size: 1.5em;">Codigo Incidencia: <select name="codigoIncidencia" style="float:right;">
                                 <option selected value="{{ old('codigoIncidencia') }}"> Elige una opción </option>
-                                    <option value="1-No se enciende la CPU">1-No se enciende la CPU</option> 
-                                    <option value="2.No se enciende la pantalla">2.No se enciende la pantalla</option> 
-                                    <option value="3.No entra en mi sesión">3.No entra en mi sesión</option> 
-                                    <option value="4.No navega en Internet">4.No navega en Internet</option> 
-                                    <option value="5.No se oye el sonido">5.No se oye el sonido</option> 
-                                    <option value="6.No lee el DVD/CD">6.No lee el DVD/CD</option> 
-                                    <option value="7.Teclado roto">7.Teclado roto</option> 
-                                    <option value="8.No funciona el ratón">8.No funciona el ratón</option> 
-                                    <option value="9.Muy lento para entrar en la sesióna">9.Muy lento para entrar en la sesión</option> 
-                                    <option value="10.(Otros) Especifica">10.(Otros) Especifica</option> 
+                                    <option value="1">1-No se enciende la CPU</option> 
+                                    <option value="2">2.No se enciende la pantalla</option> 
+                                    <option value="3">3.No entra en mi sesión</option> 
+                                    <option value="4">4.No navega en Internet</option> 
+                                    <option value="5">5.No se oye el sonido</option> 
+                                    <option value="6">6.No lee el DVD/CD</option> 
+                                    <option value="7">7.Teclado roto</option> 
+                                    <option value="8">8.No funciona el ratón</option> 
+                                    <option value="9">9.Muy lento para entrar en la sesión</option> 
+                                    <option value="10">10.(Otros) Especifica</option> 
                             </select>
                             </p>
                             <br>
@@ -118,7 +117,7 @@
                     
               
         </div>
-        <a href="{{url('/home')}}"><button class="button">Volver</button></a>
+        <a href="{{url('/home')}}" style="height: 0px;"><button class="button">Volver</button></a>
     </div>
 </div>
 @endsection

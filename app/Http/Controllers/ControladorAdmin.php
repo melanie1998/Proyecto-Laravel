@@ -33,7 +33,7 @@ class ControladorAdmin extends Controller
 
         $validator = Validator::make($request->all(),[
             
-            'estado' =>'required',
+            'estado' =>'required|integer|between:1,4',
             'comentarios' => 'required|min:0|max:255',
     
         
@@ -41,6 +41,8 @@ class ControladorAdmin extends Controller
             ],[
     
                 'required' => 'El :attribute es obligatorio.',
+                'integer' => 'El :attribute tiene que ser de tipo integer',
+                'estado.between' => 'El :attribute tiene que ser un numero del 1 al 10',
                 'comentarios.min' => 'El :attribute tiene que ser de minimo 0 letras',
                 'comentarios.max' => 'El :attribute tiene que ser de maximo 255 letras',
     
@@ -55,7 +57,15 @@ class ControladorAdmin extends Controller
             }else{
 
                 $datos = Incidencia::findOrFail($id);
-                $datos->estado = $request->input('estado');
+                if($request->input('estado') == '1'){
+                    $datos->estado = "Recibida";
+                }else if($request->input('estado') == '2'){
+                    $datos->estado = "Resuelta";
+                }else if($request->input('estado') == '3'){
+                    $datos->estado = "En proceso";
+                }else if($request->input('estado') == '4'){
+                    $datos->estado = "Rechazada";
+                }
                 $datos->comentarios = $request->input('comentarios');
                 $datos->update();
 

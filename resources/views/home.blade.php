@@ -70,7 +70,7 @@ background: #b8b8b8;
                     @endif
 
                     <center>
-                    <a href="{{url('/listaIncidencia')}}"><button class="button">Ver lista incidencias</button></a>
+                    <a href="{{url('/listaIncidencia')}}" style="height: 0px;"><button class="button">Ver lista incidencias</button></a>
                     <br>
                     </center>
                 </div>

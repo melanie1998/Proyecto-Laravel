@@ -128,7 +128,7 @@
               
                 
         </div>
-        <a href="{{url('/verLista')}}"><button class="button">Volver</button></a>
+        <a href="{{url('/verLista')}}" style="height: 0px;"><button class="button">Volver</button></a>
     </div>
 </div>
 @endsection

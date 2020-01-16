@@ -118,7 +118,7 @@
 
                                     @foreach($datos as $datos)
 
-                                        <form action="{{url('updateIncAdmin/'.$datos->profesorId)}}" method="POST" style="margin-top: 5%;">
+                                        <form action="{{url('updateIncAdmin/'.$datos->id)}}" method="POST" style="margin-top: 5%;">
                                             @csrf
                                             
                                     
@@ -128,14 +128,14 @@
                                                 
                                                 
                                                 <p style="background-color: #9F818A; font-size: 1.4em; color: white;">Estado de la incidencia: <select name="estado" style="float:right;">
-                                                        <option selected value="{{$datos->cestado}}">Elige una opcion</option>
-                                                            <option value="recibida">recibida</option> 
-                                                            <option value="resuelta">resuelta</option> 
-                                                            <option value="en proceso">en proceso</option> 
-                                                            <option value="rechazada">rechazada</option> 
+                                                        <option selected value="{{ old('estado') }}">Elige una opcion</option>
+                                                            <option value="1">recibida</option> 
+                                                            <option value="2">resuelta</option> 
+                                                            <option value="3">en proceso</option> 
+                                                            <option value="4">rechazada</option> 
                                                         </select>
                                                     </p>                                                        
-                                             <textarea rows="4" cols="55" name="comentarios" size="36" placeholder="Comentarios"></textarea>
+                                             <textarea rows="4" cols="55" name="comentarios" size="36" placeholder="Comentarios" value="{{ old('equipo') }}"></textarea>
 
                                             </div>
                                         
@@ -149,6 +149,8 @@
                                                     </button>                       
                                             </center>
                                             
+                                            <br>
+
                                             @if(count($errors))
                                                 <div class="errores">
                                                     <div class="alert alert-danger" role="alert">
@@ -165,7 +167,7 @@
 
               
         </div>  
-        <a href="{{url('/verLista')}}"><button class="button">Volver</button></a>    
+        <a href="{{url('/verLista')}}" style="height: 0px;"><button class="button">Volver</button></a>    
     </div>
 </div>
 @endsection
