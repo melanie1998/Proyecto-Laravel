@@ -73,7 +73,7 @@
                                             <p style="background-color: aliceblue; font-size: 1.5em;">Aula: <input style="float:right;" type="text" name="aula" size="25" value="{{$datos->aula}}"></p>
                                             
                                             <p style="background-color: aliceblue; font-size: 1.5em;">Codigo Incidencia: <select style="float:right;" name="codigoIncidencia">
-                                                <option selected value="{{$datos->codigoIncidencia[0]}}">{{$datos->codigoIncidencia}}</option>
+                                                <option selected value="{{$datos->codigoIncidencia[0]}}">Elegida: {{$datos->codigoIncidencia}}</option>
                                                     <option value="1">1.No se enciende la CPU</option> 
                                                     <option value="2">2.No se enciende la pantalla</option> 
                                                     <option value="3">3.No entra en mi sesión</option> 

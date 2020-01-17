@@ -37,9 +37,9 @@ return [
     ],
 
     'google' => [
-        'client_id' => '769652931025-qk9l9d7or5c121pp129b2h3alj1o0aqa.apps.googleusercontent.com',
-        'client_secret' => 'Z2GwAc4FTy6igFdD0G5JKh8g',
-        'redirect' => 'http://192.168.1.22.xip.io:8000/callback',
+        'client_id' => '',
+        'client_secret' => '',
+        'redirect' => 'http://10.10.17.252.xip.io:8000/callback',
     ],
 
 ];
