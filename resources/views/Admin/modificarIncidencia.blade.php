@@ -118,7 +118,7 @@
 
                                     @foreach($datos as $datos)
 
-                                        <form action="{{url('updateIncAdmin/'.$datos->id)}}" method="POST" style="margin-top: 5%;">
+                                        <form action="{{url('updateIncAdmin/'.$datos->profesorId)}}" method="POST" style="margin-top: 5%;">
                                             @csrf
                                             
                                     

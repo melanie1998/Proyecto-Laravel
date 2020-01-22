@@ -107,7 +107,7 @@
                                         <td style="padding: 20px;">{{ $value }} </td>
                                     @endforeach
                                     <td style="padding: 20px;"><a href="/modificarIncAdmin/{{$datos[$i]->getAttribute('id')}}" title="modificar"><img src="{!! asset('modificar.png') !!}" width="50px"></td></a>
-                                    <td style="padding: 20px;"><a href="/consultaIncAdmin/{{$datos[0]->getAttribute('id')}}" title="ver detalles"><img src="{!! asset('detalles.png') !!}" width="50px"></a></td>
+                                    <td style="padding: 20px;"><a href="/consultaIncAdmin/{{$datos[$i]->getAttribute('id')}}" title="ver detalles"><img src="{!! asset('detalles.png') !!}" width="50px"></a></td>
 
                                 </tr>
                                
