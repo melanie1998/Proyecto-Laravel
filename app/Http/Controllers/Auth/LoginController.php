@@ -66,7 +66,7 @@ public function redirectToProvider()
             return redirect('/login');
         }
       
-        if(explode("@", $user->email)[1] !== 'plaiaundi.net'){;
+        if(explode("@", $user->email)[1] !== 'plaiaundi.com'){;
             Session::flash('warning', 'Error, cuenta prohibida.');
             return redirect()->to('/paginaError');
         }

@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Incidencia;
+use App\Profesor;
 use Auth;
 use Session;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\EnviarEmail;
 use App\Mail\EnviarEmail2;
-use App\Profesor;
+
 
 class Controlador extends Controller
 {
@@ -18,6 +19,7 @@ class Controlador extends Controller
     //esta funcion hará que se muestren los datos guardados en la variable $datos donde profesorId sea igual al id del usuario logueado para que se muestren solo los datos de ese usuario
     //y qse mostrarán en la vista "listaIncidencia"
     public function lista(){
+
         $datos=Incidencia::select('id','nombreProfesor', 'fechaIncidencia', 'aula', 'codigoIncidencia', 'estado','equipo' ,'profesorId', 'comentarios')->where('profesorId', Auth::guard('profesor')->user()->id)->get();
         return view('listaIncidencia')->with('datos',$datos);
     }
@@ -32,8 +34,6 @@ class Controlador extends Controller
         'codigoIncidencia' => 'required|integer|between:1,10',
         'especificacion' => 'min:0|max:255',
         'equipo' =>'required|regex:/^HZ[1-9]{6}$/',
-      
-
     
 
         ],[
@@ -92,7 +92,7 @@ class Controlador extends Controller
                 $datos->especificacion = $request->input('especificacion');
                 $datos->equipo = $request->input('equipo');
                 $datos->profesorId = Auth::guard('profesor')->user()->id;
-            $datos->save();
+                $datos->save();
 
             //en la variable $id guardo el último id que se ha guardado en la base de datos para poder pasarlo a la vista
             $id = Incidencia::select('id')->latest()->first();
@@ -114,10 +114,13 @@ class Controlador extends Controller
 
     //para modificar los datos, desde la ruta paso la id al atributo $value, y selecciono los datos comparando la id para que sea la misma
     public function pasarDatos($value){
+        $datos = Incidencia::find($value);
+        $this->authorize('view',$datos);
         $datos = Incidencia::select('id','nombreProfesor', 'fechaIncidencia', 'aula', 'codigoIncidencia', 'especificacion', 'estado','equipo', 'comentarios')->where('id', $value)->get();
         
         //$id = Incidencia::select('id')->where('id', $value)->get();
         $id = Incidencia::select('id')->where('id', $value)->get();
+      
         return view('modificarIncidencia', ['datos' => $datos, 'id' => $id]);
     }
 
@@ -125,7 +128,8 @@ class Controlador extends Controller
 
     //funcion para actualizar los datos
     public function update(Request $request, $id){
-
+        $datos = Incidencia::find($id);
+        $this->authorize('view',$datos);
         $validator = Validator::make($request->all(),[
             'fechaIncidencia' => 'required|date_format:Y-m-d',
             'aula' => 'required|digits_between:3,3|numeric',
@@ -207,7 +211,8 @@ class Controlador extends Controller
           
             //funcion para eliminar los datos de la base de datos
             public function delete($id){
-
+                $datos = Incidencia::find($id);
+                $this->authorize('view',$datos);
                 $datos = Incidencia::findOrFail($id);
                 $datos->delete();
                 return redirect('listaIncidencia')->with('success', 'Datos eliminados correctamente');
@@ -215,6 +220,8 @@ class Controlador extends Controller
 
             //funcion para ver detalles de una incidencia
             public function consultaIncidencia($id){
+                $datos = Incidencia::find($id);
+                $this->authorize('view',$datos);
                 $datos = Incidencia::select('id','nombreProfesor', 'fechaIncidencia', 'aula', 'codigoIncidencia', 'especificacion', 'estado','equipo','profesorId', 'comentarios')->where('id', $id)->get();
                 return view('consultaIncidencia', ['datos' => $datos]);
 
